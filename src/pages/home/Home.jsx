@@ -4,7 +4,7 @@ import Card from "./../../component/home/Card.jsx"
 
 
 const Home = () => {
-  const role = "admin"
+  const role = "employee"
   const cardsData = [
     {
       name: "Add Daily Menu Options",
@@ -21,16 +21,11 @@ const Home = () => {
       for: "employee",
       path: "/view-menu"
     },
-    {
-      name: "Select Lunch Choice",
-      for: "employee",
-      path: "/select-lunch"
-    },
   ];
   return (
     <>
       <MainLayout>
-        <div className="flex gap-[10%] lg:gap-[20%] justify-center items-center h-[calc(100vh-200px)]">
+        <div className="flex gap-[10%] text-center justify-center items-center h-[calc(100vh-200px)]">
           {cardsData.map((data, idx) => (
             data.for === role && <Card data={data} key={idx} />
           ))}
