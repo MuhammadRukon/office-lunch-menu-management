@@ -2,6 +2,7 @@ import React from "react";
 import MainLayout from "../../layout/MainLayout";
 import axios from "axios";
 import { addMenu } from "../../api";
+import toast from "react-hot-toast";
 
 const AddMenu = () => {
   const handleSubmit = async (e) => {
@@ -9,9 +10,7 @@ const AddMenu = () => {
     const dishName = e.target.name.value;
     const description = e.target.desc.value;
     const date = e.target.date.value;
-    
 
-    console.log(dishName, description, date);
     const data = {
       dishName: dishName.toLowerCase(),
       description: description,
@@ -19,9 +18,17 @@ const AddMenu = () => {
     };
 
     const res = await addMenu(data);
-    console.log(res);
+   if(res.data.rowCount){
+    toast.success("successfully added");
+   } else{
+    if(res.data.detail){
+        toast.error(res.data.detail);
+    } else{
+        toast.error("could not add");
+    }
+   }
    // reset form data
-e.target.reset();
+   e.target.reset();
   };
 
   return (
