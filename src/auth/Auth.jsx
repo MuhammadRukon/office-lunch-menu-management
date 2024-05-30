@@ -5,16 +5,15 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
     const currentUser = localStorage.getItem("email");
     const currentUserRole = localStorage.getItem("role");
     setUser(currentUser)
     setRole(currentUserRole);
     setLoading(false)
-  }, [user, role]);
+  }, [user]);
 
   const authInfo = {
     user,

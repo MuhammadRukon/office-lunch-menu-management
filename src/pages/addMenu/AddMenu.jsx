@@ -4,6 +4,7 @@ import axios from "axios";
 import { addMenu } from "../../api";
 import toast from "react-hot-toast";
 
+
 const AddMenu = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();

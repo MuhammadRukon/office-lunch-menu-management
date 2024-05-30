@@ -18,7 +18,10 @@ export const register = async (bodyData) => {
 
 export const login = async (bodyData) =>{
   const {data} = await axiosInstance.post('/login', bodyData);
-  console.log(data);
-  
+  return data;
+}
+
+export const admin = async (bodyData) =>{
+  const {data} = await axiosInstance.post('/request-admin', bodyData);
   return data;
 }

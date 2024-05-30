@@ -5,19 +5,26 @@ import ViewMenu from "../pages/viewMenu/ViewMenu";
 import { getMenu } from "../api";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
+import Route from "./Route";
 
 export const routes = createBrowserRouter([
   {
     index: true,
-    element: <Home />,
+    element: <Route>
+      <Home />
+    </Route>,
   },
   {
     path: "/add-menu",
-    element: <AddMenu />,
+    element: <Route>
+      <AddMenu />
+    </Route>,
   },
   {
     path: "/menu",
-    element: <ViewMenu />,
+    element: <Route>
+      <ViewMenu />
+    </Route>,
     loader: async () => await getMenu(),
   },
   {

@@ -1,10 +1,11 @@
-import React from "react";
+
 import { useLoaderData } from "react-router-dom";
 import MainLayout from "../../layout/MainLayout";
 import MenuCard from "../../component/viewMenu/MenuCard";
 
 
 const ViewMenu = () => {
+
   const { data } = useLoaderData();
   return (
     <MainLayout>
