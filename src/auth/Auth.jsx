@@ -5,13 +5,16 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
+  const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const currentUser = localStorage.getItem("email");
     const currentUserRole = localStorage.getItem("role");
+    const currentUserId = localStorage.getItem("userId");
     setUser(currentUser)
     setRole(currentUserRole);
+    setUserId(currentUserId);
     setLoading(false)
   }, [user]);
 
@@ -22,6 +25,8 @@ const AuthProvider = ({ children }) => {
     role,
     setRole,
     setUser,
+    userId,
+    setUserId
   };
 
   return (

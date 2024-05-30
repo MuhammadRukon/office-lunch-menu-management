@@ -5,7 +5,7 @@ import { AuthContext } from "../../auth/Auth";
 import toast from "react-hot-toast";
 
 const Login = () => {
-    const {setUser, setRole} = useContext(AuthContext);
+    const {setUser, setRole, setUserId} = useContext(AuthContext);
     const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,8 +20,10 @@ const Login = () => {
    if(response.status === 200){
     setUser(response.email);
     setRole(response.role);
+    setUserId(response.userId)
     localStorage.setItem("email", response.email)
     localStorage.setItem("role", response.role)
+    localStorage.setItem("userId", response.userId)
     toast.success("successfully logged in");
     navigate('/');
    } else{

@@ -1,3 +1,4 @@
+import moment from "moment";
 import axiosInstance from "./axiosInstance";
 
 export const addMenu = async (bodyData) => {
@@ -6,7 +7,8 @@ export const addMenu = async (bodyData) => {
 };
 
 export const getMenu = async () => {
-  const data = await axiosInstance("menu");
+  const formattedDate = moment().format("YYYY-MM-DD");
+  const data = await axiosInstance.post("menu", { date: formattedDate });
   return data;
 };
 
@@ -15,13 +17,18 @@ export const register = async (bodyData) => {
   return data;
 };
 
-
-export const login = async (bodyData) =>{
-  const {data} = await axiosInstance.post('/login', bodyData);
+export const login = async (bodyData) => {
+  const { data } = await axiosInstance.post("/login", bodyData);
   return data;
-}
+};
 
-export const admin = async (bodyData) =>{
-  const {data} = await axiosInstance.post('/request-admin', bodyData);
+export const admin = async (bodyData) => {
+  const { data } = await axiosInstance.post("/request-admin", bodyData);
   return data;
-}
+};
+
+export const selectLunch = async (bodyData) => {
+  const data = await axiosInstance.post("/select-lunch", bodyData);
+  console.log(data);
+  return data;
+};
