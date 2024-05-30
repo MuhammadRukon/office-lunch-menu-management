@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../auth/Auth.jsx";
 
 const Register = () => {
-    const { setUser, setRole}  = useContext(AuthContext);
+    const { setUser, setRole, setUserId}  = useContext(AuthContext);
   const [errormsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
   const handleSignUp = async (e) => {
@@ -34,8 +34,12 @@ const Register = () => {
     if (response.status === 200) {
         localStorage.setItem('email',email);
         localStorage.setItem('role',role);
+      const newUser = response.data.rows[0];
+      localStorage.setItem('userId',newUser.id);
+
         setRole(role),
         setUser(email);
+        setUserId(newUser.id);
         toast.success("successfully registered");
       navigate("/");
 

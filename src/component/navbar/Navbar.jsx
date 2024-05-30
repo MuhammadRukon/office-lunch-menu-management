@@ -4,13 +4,15 @@ import { useContext,  useState } from "react";
 import { AuthContext } from "../../auth/Auth";
 
 const Navbar = () => {
-  const { user, loading, setUser, setRole } = useContext(AuthContext);
+  const { user, loading, setUser, setRole, setUserId } = useContext(AuthContext);
   const [showModal,setShowModal] = useState(false);
   const handleLogout = ()=>{
     setUser(null);
     setRole(null);
+    setUserId(null);
     localStorage.setItem('email', null);
     localStorage.setItem("role", null);
+    localStorage.setItem("userId", null);
   }
   const toggle = ()=>{
     setShowModal(!showModal);
