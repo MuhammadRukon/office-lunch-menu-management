@@ -1,13 +1,23 @@
+import { Link } from "react-router-dom";
 import NavItems from "./NavItems";
+import { useContext } from "react";
+import { AuthContext } from "../../auth/Auth";
 
 const Navbar = () => {
+  const { user, loading, setUser, setRole } = useContext(AuthContext);
+  const handleLogout = ()=>{
+    setUser(null);
+    setRole(null);
+    localStorage.setItem('email', null);
+    localStorage.setItem("role", null);
+  }
   return (
     <>
       <div className="text-white bg-[#1f2937]">
         <div className="xl:container mx-auto px-8 flex justify-between items-center">
           <div></div>
           <NavItems />
-          <div className="w-8 h-8 rounded-full cursor-pointer overflow-hidden">
+          <div className="w-8 h-8 relative rounded-full cursor-pointer">
             <svg
               fill="none"
               height="30"
@@ -20,6 +30,17 @@ const Navbar = () => {
                 <path d="m12 6.92969c-2.07 0-3.75 1.68-3.75 3.75001 0 2.03 1.59 3.68 3.7 3.74h.09.07.02c2.02-.07 3.61-1.71 3.62-3.74 0-2.07001-1.68-3.75001-3.75-3.75001z" />
               </g>
             </svg>
+            <div className="w-20 text-center py-2 flex flex-col gap-1 shadow-xl rounded-lg bg-white top-10 absolute  text-black">
+              { !user ? (
+                <>
+                  <Link to={"/login"}>login</Link>
+                  <hr />
+                  <Link to={"/register"}>register</Link>
+                </>
+              ) : (
+                <p onClick={handleLogout}>Logout</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
