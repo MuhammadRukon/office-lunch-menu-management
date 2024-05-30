@@ -8,7 +8,12 @@ export const addMenu = async (bodyData) => {
 
 export const getMenu = async () => {
   const formattedDate = moment().format("YYYY-MM-DD");
-  const data = await axiosInstance.post("menu", { date: formattedDate });
+  const data = await axiosInstance.post("/menu", { date: formattedDate });
+  return data;
+};
+
+export const getChoice = async () => {
+  const data = await axiosInstance("/choice");
   return data;
 };
 

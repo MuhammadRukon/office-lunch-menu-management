@@ -1,6 +1,7 @@
 import React,  {useContext} from "react";
 import { selectLunch } from "../../api";
 import { AuthContext } from "./../../auth/Auth.jsx";
+import toast from "react-hot-toast";
 
 const MenuCard = ({ item }) => {
 const {userId} = useContext(AuthContext);
@@ -11,7 +12,11 @@ const {userId} = useContext(AuthContext);
       employee_id: Number(userId)
     }
     const res = await selectLunch(data);
-    console.log(res);
+    if(res?.data?.rowCount>0){
+      toast.success("successfully selected")
+    }else{
+      toast.error("could not select");
+    }
   }
   return (
     <div>
